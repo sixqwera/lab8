@@ -15,9 +15,9 @@ namespace main
 
         public int Id
         {
-            get 
+            get
             {
-                return _id; 
+                return _id;
             }
             set
             {
@@ -50,29 +50,29 @@ namespace main
         }
         public double Avg
         {
-            get 
+            get
             {
-                return _avg; 
+                return _avg;
             }
-            set 
-            { 
-                _avg = value; 
+            set
+            {
+                _avg = value;
             }
         }
 
         public int Grade
         {
-            get 
-            { 
-                return _grade; 
+            get
+            {
+                return _grade;
             }
-            set 
-            { 
-                _grade = value; 
+            set
+            {
+                _grade = value;
             }
         }
 
-      public _2(int id, string lastName, string firstName, double avg, int grade)
+        public _2(int id, string lastName, string firstName, double avg, int grade)
         {
             Id = id;
             LastName = lastName;
@@ -87,4 +87,3 @@ namespace main
         }
     }
 }
-
