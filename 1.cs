@@ -18,8 +18,6 @@ namespace main
 
             _3.WriteToFile(list);
 
-            list = _3.ReadFromFile();
-
             bool running = true;
 
             while (running)
@@ -44,12 +42,12 @@ namespace main
                         Console.Write("Введите ID для удаления: ");
                         int id = int.Parse(Console.ReadLine());
                         _3.Delete(list, id);
-                        _3.WriteToFile(list); 
+                        _3.WriteToFile(list);
                         break;
 
                     case "3":
                         _3.Add(list);
-                        _3.WriteToFile(list); 
+                        _3.WriteToFile(list);
                         break;
 
                     case "4":
