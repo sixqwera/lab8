@@ -45,65 +45,97 @@ namespace main
         }
         public static void ShowAll(List<_2> students)
         {
+            if (students == null || students.Count == 0)
+            {
+                Console.WriteLine("Список студентов пуст.");
+            }
             foreach (var timeI in students)
             {
-                Console.WriteLine(timeI); 
+                Console.WriteLine(timeI);
             }
         }
 
         public static void Delete(List<_2> list, int id)
         {
-            _2 student = list.Find(stud => stud.Id == id);
 
+            _2 student = list.Find(stud => stud.Id == id);
             if (student == null)
             {
                 Console.WriteLine("Студент не найден!");
-                return;
             }
-
-            list.Remove(student);
-            Console.WriteLine("Студент удалён!");
+            else
+            {
+                list.Remove(student);
+                Console.WriteLine("Студент удалён!");
+            }
         }
 
         public static void Add(List<_2> list)
         {
-            Console.Write("ID: ");
-            int id = int.Parse(Console.ReadLine());
+            try
+            {
+                Console.Write("ID: ");
+                int id = int.Parse(Console.ReadLine());
 
-            Console.Write("Фамилия: ");
-            string lastName = Console.ReadLine();
+                if (list.Any(s => s.Id == id))
+                {
+                    Console.WriteLine("Ошибка: Студент с таким ID уже существует!");
+                }
 
-            Console.Write("Имя: ");
-            string firstName = Console.ReadLine();
+                Console.Write("Фамилия: ");
+                string lastName = Console.ReadLine();
+                Console.Write("Имя: ");
+                string firstName = Console.ReadLine();
 
-            Console.Write("Средний балл: ");
-            double avg = double.Parse(Console.ReadLine());
+                if (string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(firstName))
+                {
+                    Console.WriteLine("Ошибка: Имя и фамилия не могут быть пустыми!"); 
+                }
 
-            Console.Write("Класс: ");
-            int grade = int.Parse(Console.ReadLine());
+                Console.Write("Средний балл: ");
+                double avg = double.Parse(Console.ReadLine());
 
-            list.Add(new _2(id, lastName, firstName, avg, grade));
-            Console.WriteLine("Студент добавлен!");
+                Console.Write("Класс: ");
+                int grade = int.Parse(Console.ReadLine());
+
+                list.Add(new _2(id, lastName, firstName, avg, grade));
+                Console.WriteLine("Студент добавлен!");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Ошибка: Введены некорректные данные (нужно вводить числа)!");
+            }
         }
 
         public static void GetHighAvg(List<_2> students)
         {
-            var result = students.Where(s => s.Avg > 7).ToList();
-            foreach (var s in result)
-                Console.WriteLine(s);
-        }
 
-        public static void GetByGrade(List<_2> list, int grade)
-        {
-            var result = list.Where(s => s.Grade == grade).ToList();
-            foreach (var s in result)
-                Console.WriteLine(s);
+            var result = students.Where(s => s.Avg > 7).ToList();
+            if (result.Count == 0)
+            {
+                Console.WriteLine("Студентов со средним баллом выше 7 нет.");
+            }
+            else
+            {
+                foreach (var s in result) Console.WriteLine(s);
+            }
         }
 
         public static void GetMaxAvg(List<_2> list)
         {
+            if (list == null || list.Count == 0)
+            {
+                Console.WriteLine("Список пуст, невозможно вычислить балл.");
+            }
             double max = list.Max(s => s.Avg);
             Console.WriteLine($"Максимальный средний балл: {max}");
+        }
+
+        public static void GetByGrade(List<_2> list, int grade)
+        {
+            var result = list.Where(s => s.Grade == grade);
+            foreach (var s in result)
+                Console.WriteLine(s);
         }
 
         public static void GetCountByGrade(List<_2> list, int grade)
