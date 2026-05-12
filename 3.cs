@@ -25,22 +25,27 @@ namespace main
         public static List<_2> ReadFromFile()
         {
             List<_2> list = new List<_2>();
+            BinaryReader reader = new BinaryReader(
+                File.Open("student.dat", FileMode.Open)
+            );
 
-            BinaryReader reader = new BinaryReader(File.Open("student.dat", FileMode.Open));
+            int id = 0;
+            string lastName = "";
+            string firstName = "";
+            double avg = 0;
+            int grade = 0;
 
             while (reader.BaseStream.Position < reader.BaseStream.Length)
             {
-                int id = reader.ReadInt32();
-                string lastName = reader.ReadString();
-                string firstName = reader.ReadString();
-                double avg = reader.ReadDouble();
-                int grade = reader.ReadInt32();
-
+                id = reader.ReadInt32();
+                lastName = reader.ReadString();
+                firstName = reader.ReadString();
+                avg = reader.ReadDouble();
+                grade = reader.ReadInt32();
                 list.Add(new _2(id, lastName, firstName, avg, grade));
             }
 
             reader.Close();
-
             return list;
         }
         public static void ShowAll(List<_2> students)
@@ -89,7 +94,7 @@ namespace main
 
                 if (string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(firstName))
                 {
-                    Console.WriteLine("Ошибка: Имя и фамилия не могут быть пустыми!"); 
+                    Console.WriteLine("Ошибка: Имя и фамилия не могут быть пустыми!");
                 }
 
                 Console.Write("Средний балл: ");
