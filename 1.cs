@@ -19,6 +19,9 @@ namespace main
             _3.WriteToFile(list);
 
             bool running = true;
+            int id = 0;
+            int grade = 0;
+            int gradeCount = 0;
 
             while (running)
             {
@@ -40,7 +43,7 @@ namespace main
 
                     case "2":
                         Console.Write("Введите ID для удаления: ");
-                        int id = int.Parse(Console.ReadLine());
+                        id = int.Parse(Console.ReadLine());
                         _3.Delete(list, id);
                         _3.WriteToFile(list);
                         break;
@@ -52,10 +55,18 @@ namespace main
 
                     case "4":
                         Console.WriteLine("\n=== LINQ-ЗАПРОСЫ ===");
-                        Console.WriteLine("1. Студенты со средним баллом выше 7");
-                        Console.WriteLine("2. Студенты определённого класса");
-                        Console.WriteLine("3. Максимальный средний балл");
-                        Console.WriteLine("4. Количество студентов в классе");
+                        Console.WriteLine(
+                            "1. Студенты со средним баллом выше 7"
+                        );
+                        Console.WriteLine(
+                            "2. Студенты определённого класса"
+                        );
+                        Console.WriteLine(
+                            "3. Максимальный средний балл"
+                        );
+                        Console.WriteLine(
+                            "4. Количество студентов в классе"
+                        );
                         Console.Write("Выберите запрос: ");
 
                         string linq = Console.ReadLine();
@@ -65,20 +76,28 @@ namespace main
                             case "1":
                                 _3.GetHighAvg(list);
                                 break;
+
                             case "2":
                                 Console.Write("Введите класс: ");
-                                int grade = int.Parse(Console.ReadLine());
+                                grade = int.Parse(Console.ReadLine());
                                 _3.GetByGrade(list, grade);
                                 break;
+
                             case "3":
                                 _3.GetMaxAvg(list);
                                 break;
+
                             case "4":
                                 Console.Write("Введите класс: ");
-                                int g = int.Parse(Console.ReadLine());
-                                _3.GetCountByGrade(list, g);
+                                g = int.Parse(Console.ReadLine());
+                                _3.GetCountByGrade(list, gradeCount);
+                                break;
+
+                            default:
+                                Console.WriteLine("Неверный пункт!");
                                 break;
                         }
+
                         break;
 
                     case "0":
