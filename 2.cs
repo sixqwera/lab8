@@ -4,15 +4,14 @@ using System.Text;
 
 namespace main
 {
-    internal class _2
+    internal class DataBase
     {
         private int _id;
         private string _lastName;
         private string _firstName;
         private double _avg;
         private int _grade;
-
-        public _2(int id, string lastName, string firstName, double avg, int grade)
+        public DataBase(int id,string lastName,string firstName,double avg,int grade)
         {
             Id = id;
             LastName = lastName;
@@ -20,6 +19,7 @@ namespace main
             Avg = avg;
             Grade = grade;
         }
+
         public int Id
         {
             get
@@ -80,7 +80,6 @@ namespace main
         }
 
         
-
         public override string ToString()
         {
             return $"ID: {Id} | Фамилия: {LastName} | Имя: {FirstName} | Средний балл: {Avg} | Класс: {Grade}";
