@@ -12,7 +12,14 @@ namespace main
         private double _avg;
         private int _grade;
 
-
+        public _2(int id, string lastName, string firstName, double avg, int grade)
+        {
+            Id = id;
+            LastName = lastName;
+            FirstName = firstName;
+            Avg = avg;
+            Grade = grade;
+        }
         public int Id
         {
             get
@@ -72,14 +79,7 @@ namespace main
             }
         }
 
-        public _2(int id, string lastName, string firstName, double avg, int grade)
-        {
-            Id = id;
-            LastName = lastName;
-            FirstName = firstName;
-            Avg = avg;
-            Grade = grade;
-        }
+        
 
         public override string ToString()
         {
